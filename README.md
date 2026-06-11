@@ -174,3 +174,9 @@ library-api/
    - User checks if it is allowed to borrow
    - If so, update the book and update the member
    - Notification that the book has been borrowed
+
+10. **Additional actions:**
+   - Show all members `/members`
+   - Show general report `/reports/summary`
+   - Show all books by genre
+   - Show most active member
