@@ -12,10 +12,10 @@ In the system, you can add and manage books, add and manage members
 ## The code to create docker with MySql
 ### step 1
 ````
-docker run --name my-mysql1 \
+docker run --name my-mysql-library \
 -e MYSQL_ROOT_PASSWORD=secret \
--e MYSQL_DATABASE=mydb \
--p 3308:3306 \
+-e MYSQL_DATABASE=library_db \
+-p 3309:3306 \
 -d mysql:latest
 ````
 ### step 2
@@ -24,7 +24,7 @@ docker ps
 ````
 ### step 3
 ````
-docker exec -it my-mysql1 mysql -u root -p
+docker exec -it my-mysql-library mysql -u root -p
 ````
 ### step 4
 ````
