@@ -1,7 +1,11 @@
-תיאור המערכת במילים שלכם
-- זרימת המערכת
-- הוראות הרצה
+# Welcome to the library system!
 
+## System description
+A library management system with all that this implies, book management and subscription management and the integration between them.
+
+In the database, there are two databases: books and members.
+
+In the system, you can add and manage books, add and manage members
 
 
 
@@ -58,23 +62,23 @@ library-api/
 
 ## Table structure
 ### books table
-| field | explanation                                                       |
-|-------|-------------------------------------------------------------------|
-| id    | primary key                                                       |
-| title | Book title, non-empty column, maximum 50 characters               |
-| author| Author name, non-empty column, maximum 50 characters              |
-| genre | Allowed genre values: Implemented — Fiction Non-Fiction \ Science \ History \ Other as an ENUM column in the database, any other value returns an error, Non-empty column |
-| available_is | Is the book available for loan — FALSE indicates loaned Non-empty column|
-| id_member_by_borrowed | The ID of the member holding the book — NULL if available |
+| field | explanation                                                                                                                                                                     |
+|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| id    | primary key - int - automatic numbering                                                                                                                                         |
+| title | Book title, non-empty column, maximum 50 characters - str                                                                                                                       |
+| author| Author name, non-empty column, maximum 50 characters - str                                                                                                                      |
+| genre | Allowed genre values: Implemented — Fiction Non-Fiction \ Science \ History \ Other as an ENUM column in the database, any other value returns an error, Non-empty column - str |
+| available_is | Is the book available for loan — FALSE indicates loaned Non-empty column - bool                                                                                                 |
+| id_member_by_borrowed | The ID of the member holding the book — NULL if available - int or null                                                                                                         |
 
 ### members table
-| field     | explanation                                                       |
-|-----------|-------------------------------------------------------------------|
-| id        | primary key|
-| name      | Member name, non-empty column, maximum 50 characters|
-| email     | Email address — unique, non-empty column|
-| is_active | Is the member active — FALSE Cannot borrow a non-empty column|
-| total_borrows | Total number of questions - increases by 1 - each question has a non-empty column|
+| field     | explanation                                                                             |
+|-----------|-----------------------------------------------------------------------------------------|
+| id        | primary key - int - automatic numbering                                                 |
+| name      | Member name, non-empty column, maximum 50 characters - str                              |
+| email     | Email address — unique, non-empty column - str                                          |
+| is_active | Is the member active — FALSE Cannot borrow a non-empty column - bool                    |
+| total_borrows | Total number of questions - increases by 1 - each question has a non-empty column - int |
 
 
 ## System rules
@@ -176,7 +180,26 @@ library-api/
    - Notification that the book has been borrowed
 
 10. **Additional actions:**
-   - Show all members `/members`
-   - Show general report `/reports/summary`
-   - Show all books by genre
-   - Show most active member
+   - Show all members GET `/members`
+   - Show general report GET `/reports/summary`
+   - Show all books by genre GET `/reports/books-by-genre`
+   - Show most active member GET `/reports/top-member`
+
+
+## Running instructions
+### step 1
+Download the Python files via the clone on GitHub
+````
+https://github.com/dashiur1000/library-api.git
+````
+### step 2
+Install the requirements.txt file to install all the libraries
+````
+pip install requirements.txt
+````
+### step 3
+Install Docker as per the instructions given above at the beginning of the file
+### step 4
+Open the main.py and start the server or by running
+### step 5
+Open the swagger to view and manage the server
