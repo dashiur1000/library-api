@@ -1,19 +1,20 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter
 import uvicorn
 
 from database.member_db import MemberDb
-from database.db_connection import get_connection
+from database.db_connection import get_connection, logger
 
-app = FastAPI()
+router = APIRouter()
 db_conn = get_connection()
 my_members_db = MemberDb(db_conn)
 
 
-@app.post("/members", status_code=200)
+@router.post("/members", status_code=200)
 def create_new_member(data: dict):
+    logger.info("GET /members")
     return my_members_db.create_member(data)
 
-@app.get("/members")
+@router.get("/members")
 def get_all_members():
     return my_members_db.get_all_members()
 
