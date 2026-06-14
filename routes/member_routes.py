@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-import uvicorn
 
 from database.member_db import MemberDb
 from database.db_connection import get_connection, logger
@@ -18,5 +17,6 @@ def create_new_member(data: dict):
 def get_all_members():
     return my_members_db.get_all_members()
 
-if __name__ == "__main__":
-    uvicorn.run("member_routes:app", port=8002)
+@router.get("/members/{id}")
+def get_member_by_id(id: int):
+    return my_members_db.get_member_by_id(id)

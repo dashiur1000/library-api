@@ -1,7 +1,8 @@
 import mysql.connector
 import logging
-# log_file = "C:\\library-api\\logs\\app.log"
+import os
 
+log_file_path = os.path.join("logs", "app.log")
 
 def get_connection():
     config = {
@@ -55,7 +56,7 @@ def create_tables():
 
 def add_logging():
     FORMAT = ("%(asctime)s | %(levelname)s | %(message)s")
-    logging.basicConfig(filename="log_file.log", level=logging.INFO, format=FORMAT)
+    logging.basicConfig(filename=log_file_path, level=logging.INFO, format=FORMAT)
     logger1 = logging.getLogger(__name__)
     return logger1
 logger = add_logging()

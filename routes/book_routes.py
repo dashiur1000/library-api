@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from database.book_db import BookDB
-from database.db_connection import get_connection
+from database.db_connection import get_connection, logger
 
 router = APIRouter()
 db_conn = get_connection()
@@ -13,6 +13,7 @@ def create_book(data: dict):
 
 @router.get("/books")
 def get_books():
+    logger.info("GET /books")
     return my_book_db.get_all_books()
 
 @router.get("/books/{id}")

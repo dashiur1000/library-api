@@ -24,3 +24,16 @@ class MemberDb:
         for i in val:
             my_list.append({"member_id": i[0], "name": i[1], "email": i[2], "is_active": i[3], "total_borrows": i[4]})
         return my_list
+
+
+    def get_member_by_id(self, id):
+        cursor = self.connection.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM members")
+        val = cursor.fetchall()
+        row = []
+        for item in val:
+            if item["id"] == id:
+                row.append(item)
+        if row == []:
+            raise HTTPException(status_code=404, detail="Member does not exist")
+        return row
