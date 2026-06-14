@@ -90,4 +90,20 @@ class BookDB:
         return result["count"] < 3
 
 
+    def count_borrowed_books(self):
+        cursor = self.connection.cursor(dictionary=True)
+        cursor.execute("SELECT COUNT(is_available) as count FROM books WHERE is_available = 0")
+        counter = cursor.fetchone()
+        return counter["count"]
+
+
+    def count_available_books(self):
+        cursor = self.connection.cursor(dictionary=True)
+        cursor.execute("SELECT COUNT(is_available) as count FROM books WHERE is_available = 1")
+        counter = cursor.fetchone()
+        return counter["count"]
+
+
+    def count_by_genre(self, genre):
+        pass
 

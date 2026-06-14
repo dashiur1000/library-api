@@ -81,3 +81,10 @@ class MemberDb:
             return True
         except:
             raise HTTPException(status_code=404, detail="not found")
+
+
+    def count_active_members(self):
+        cursor = self.connection.cursor(dictionary=True)
+        cursor.execute("SELECT COUNT(is_active) FROM members")
+        counter = cursor.fetchone()
+        return counter["COUNT(is_active)"]

@@ -116,11 +116,11 @@ library-api/
 |PUT|/members{id}/activate| Member activation| UPDATE is_active=True | id| activate_member(id)|
 
 ### Reports
-| Method | Endpoint | Description        | Request Body  | Response | func                     |
-|------|--------|--------------------|------------|-----------------------|--------------------------|
-|GET|/reports/summary | get general report |SELECT members is_active=True|| count_active_members(),  count_available_books()|
-|GET|/reports/books-by-genre|Book Writer by Genre|SELECT books GROUP BY Genre|| count_by_genre(genre)    |
-|GET|/reports/top-member| Returns the most active member| SELECT by borrows_total|| get_top_member()         |
+| Method | Endpoint | Description        | Request Body  | Response | func                                               |
+|------|--------|--------------------|------------|-----------------------|----------------------------------------------------|
+|GET|/reports/summary | get general report |SELECT members is_active=True|| count_active_members(),  count_available_books(), count_borrowed_books() |
+|GET|/reports/books-by-genre|Book Writer by Genre|SELECT books GROUP BY Genre|| count_by_genre(genre)                              |
+|GET|/reports/top-member| Returns the most active member| SELECT by borrows_total|| get_top_member()                                   |
 
 
 ## System flow
