@@ -28,3 +28,7 @@ def update_member(id: int, data: dict):
 @router.put("/members/{id}/deactivate")
 def deactivate_member(id: int):
     return my_members_db.deactivate_member(id)
+
+@router.put("/members/{id}/activate")
+def activate_member(id: int):
+    return my_members_db.activate_member(id)
