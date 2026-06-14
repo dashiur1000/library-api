@@ -17,5 +17,6 @@ def reports_all():
             "active_members": my_reports_member.count_active_members()}
 
 @router.get("/reports/books-by-genre")
-def count_by_genre(genre):
-    pass
+def count_by_genre():
+    genre = ('Fiction', 'Non-Fiction', 'Science', 'History', 'Other')
+    return my_reports_books.count_by_genre(genre)
