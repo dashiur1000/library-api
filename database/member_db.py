@@ -57,3 +57,15 @@ class MemberDb:
         except:
             raise HTTPException(status_code=404, detail="not fo0und")
 
+
+
+    def deactivate_member(self, id):
+        try:
+            cursor = self.connection.cursor(dictionary=True)
+            query = "UPDATE members SET is_active = 0 WHERE id = %s AND is_active = 1"
+            cursor.execute(query, (id,))
+            self.connection.commit()
+            cursor.close()
+            return True
+        except:
+            raise HTTPException(status_code=404, detail="not found")

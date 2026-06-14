@@ -24,3 +24,7 @@ def get_member_by_id(id: int):
 @router.put("/members/{id}")
 def update_member(id: int, data: dict):
     return my_members_db.update_member(id, data)
+
+@router.put("/members/{id}/deactivate")
+def deactivate_member(id: int):
+    return my_members_db.deactivate_member(id)
