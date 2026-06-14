@@ -20,3 +20,7 @@ def get_all_members():
 @router.get("/members/{id}")
 def get_member_by_id(id: int):
     return my_members_db.get_member_by_id(id)
+
+@router.put("/members/{id}")
+def update_member(id: int, data: dict):
+    return my_members_db.update_member(id, data)

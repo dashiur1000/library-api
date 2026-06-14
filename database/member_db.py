@@ -37,3 +37,23 @@ class MemberDb:
         if row == []:
             raise HTTPException(status_code=404, detail="Member does not exist")
         return row
+
+
+    def update_member(self, id, data):
+        cursor = self.connection.cursor(dictionary=True)
+        try:
+            set_parts = [f"{key} = %s" for key in data.keys()]
+            set_cluse = ", ".join(set_parts)
+
+            sql = f"UPDATE members SET {set_cluse} WHERE id = %s"
+            val = (list(data.values())) + [id]
+
+            cursor.execute(sql, val)
+            changed = cursor.rowcount > 0
+            self.connection.commit()
+            cursor.close()
+
+            return changed
+        except:
+            raise HTTPException(status_code=404, detail="not fo0und")
+
